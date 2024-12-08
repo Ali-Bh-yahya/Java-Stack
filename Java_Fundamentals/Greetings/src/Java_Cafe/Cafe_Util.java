@@ -43,17 +43,22 @@ public class Cafe_Util {
 		for (int i = 0; i < menuItems.size(); i++) {
 			System.out.println(i + " " + menuItems.get(i));
 		}
-
 	}
 
 	public void addCustomer(ArrayList<String> customers) {
-	Scanner user = new Scanner(System.in);
-	System.out.println("Enter tour name please ....");
-	String username = user.nextLine();
-	
-	System.out.printf("There are %d"+" "+ username+" "+"people in front of you !!/n",customers.size());//%d its a format of decimal integer
-	customers.add(username);
-	System.out.println(customers);
+		Scanner user = new Scanner(System.in);
+		System.out.println("Enter tour name please ....");
+		String username = user.nextLine();
+
+		System.out.printf("There are %d" + " " + username + " " + "people in front of you !! \n  ", customers.size());// %d
+																														// its
+																														// a
+																														// format
+																														// of
+																														// decimal
+																														// integer
+		customers.add(username);
+		System.out.println(customers);
 	}
 
 }
