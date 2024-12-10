@@ -1,22 +1,16 @@
 package bank_Account;
-import java.util.Scanner;
+
 public class BankAccount {
 	private double cheackingBalance;
-
 	private double savingBalance;
 	private static int accounts;
 	private static double totalMoney;
-	public static int numberOfAccount;
 
 	public BankAccount() {
-		numberOfAccount++;
-		accounts++;
-	}
-
-	public BankAccount(double cheackingBalance, double savingBalance) {
-		this.cheackingBalance=0;
+		this.cheackingBalance = 0;
 		this.savingBalance = 0;
-		BankAccount.totalMoney = savingBalance + getCheackingBalance() ;
+		accounts++;
+
 	}
 
 	public double getSavingBalance() {
@@ -35,41 +29,54 @@ public class BankAccount {
 		return totalMoney;
 	}
 
-	public static int getNumberOfAccount() {
-		return numberOfAccount;
-	}
-
 	public double getCheackingBalance() {
 		return cheackingBalance;
 	}
-	
-	public void deposit(Scanner ask) {
+
+	public void deposit(String accountType, double money) {
 		System.out.println("Insert the amount put in");
-		double task = ask.nextDouble();
-		savingBalance += task;
-		System.out.println("Your account balance is : \t"+savingBalance);
-	}
-	
-	public void withDrawMoney(String typeAccount,Scanner ask) {
-		if(typeAccount == "saving account") {
-		double task = ask.nextDouble();
-		savingBalance += task;
-		System.out.println("Your account balance is : \t"+savingBalance);}
-		else {
-			System.out.println("Sorry you cant withDraw becouse there are insufficinient funds");}
+		double task = money;
+		totalMoney += task;
+		if (accountType == "cheacking") {
+
+			cheackingBalance += task;
+			System.out.println("Your account balance is : \t" + cheackingBalance);
+		} else {
+			savingBalance += task;
+			System.out.println("Your account balance is : \t" + savingBalance);
 		}
-	
-	  public void display() {
-	        System.out.println("Checking Balance: $" + cheackingBalance);
-	        System.out.println("Saving Balance: $" + savingBalance);
-	        System.out.println("Total Balance: $" + (cheackingBalance + savingBalance));
-	    }
-	
-	
-		
 	}
-	
-	
-	
+
+	public void withDrawMoney(String typeAccount, double money) {
+		double task = money;
+		if (typeAccount == "cheacking") {
+			if (getCheackingBalance() >= task) {
+				cheackingBalance -= task;
+				System.out.println("Your account balance is : \t" + cheackingBalance);
+			} else {
+				System.out.println("Insufficient funds.");
+			}
+		} else {
+			if (getSavingBalance() >= task) {
+				savingBalance -= task;
+				System.out.println("Your account balance is : \t" + savingBalance);
+			} else {
+				System.out.println("Insufficient funds.");
+			}
+
+		}
+
+	}
+
+	public void getBalance() {
+		System.out.println(
+				"Total balance:\t" + "Checking: $" + getCheackingBalance() + "\tSavings: $" + getSavingBalance());
+	}
+
+	public void display() {
+		System.out.println("Checking Balance: $" + cheackingBalance);
+		System.out.println("Saving Balance: $" + savingBalance);
+		System.out.println("Total Balance: $" + (cheackingBalance + savingBalance));
+	}
 
 }
