@@ -1,14 +1,17 @@
 package bank_Account;
 
+
 public class BankAccount {
 	private double cheackingBalance;
 	private double savingBalance;
 	private static int accounts;
 	private static double totalMoney;
+//	private double cash;
 
-	public BankAccount() {
-		this.cheackingBalance = 0;
-		this.savingBalance = 0;
+	public BankAccount(double cheackingBalance , double savingBalance ) {
+//		this.cash = setCash();
+		this.cheackingBalance = cheackingBalance;
+		this.savingBalance = savingBalance ;
 		accounts++;
 
 	}
@@ -77,6 +80,14 @@ public class BankAccount {
 		System.out.println("Checking Balance: $" + cheackingBalance);
 		System.out.println("Saving Balance: $" + savingBalance);
 		System.out.println("Total Balance: $" + (cheackingBalance + savingBalance));
+	}
+
+	public double getCash() {
+		return cash;
+	}
+
+	public void setCash(double cash) {
+		this.cash = cash;
 	}
 
 }
