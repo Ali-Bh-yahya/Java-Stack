@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; /* Full screen height */
+	background-color: #f0f0f0; /* Optional for better visibility */
+	
+
+a {
+	
+	margin: 0 10px; /* Spacing between links */
+	color: rgb(129, 61, 156)61, 56, 70); /* Link color */
+	font-size: 25px;
+}
