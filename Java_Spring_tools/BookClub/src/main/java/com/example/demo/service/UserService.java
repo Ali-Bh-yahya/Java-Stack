@@ -12,34 +12,35 @@ import com.example.demo.model.UserLogin;
 import com.example.demo.repo.UserRepo;
 
 import jakarta.validation.Valid;
-
-
 @Service
 public class UserService {
- @Autowired
- UserRepo userRepo;
 
-public User register(@Valid User user, BindingResult res) {
-    // Check if email is already taken
-	Optional<User> potentialNewUser = userRepo.findByEmail(user.getEmail());
-    // Reject if email is taken (present in database)
-	if(potentialNewUser.isPresent()) {
-		res.rejectValue("email", "email.Exsists", "This Email already exists!");
-	}
-	// Check if passwords match
-	if(!user.getPassword().equals(user.getConfirmPassword())) {
-		res.rejectValue("password", "Not.Match", "this password is not Match !");
-	}
-	// Hash and set password, save user to database
-	String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-	user.setPassword(hashedPassword);
-	
-    // Return null if result has errors
-	if(res.hasErrors()) {
-		return null ; 
-	}
+	@Autowired
+	UserRepo userRepo;
+
+	public User register(@Valid User user, BindingResult res) {
+		// Check if email is already taken
+		Optional<User> potentialNewUser = userRepo.findByEmail(user.getEmail());
+		// Reject if email is taken (present in database)
+		if (potentialNewUser.isPresent()) {
+			res.rejectValue("email", "email.Exsists", "This Email already exists!");
+		}
+		// Check if passwords match
+		if (!user.getPassword().equals(user.getConfirmPassword())) {
+			res.rejectValue("password", "Not.Match", "this password is not Match !");
+		}
+		// Hash and set password, save user to database
+		String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+		user.setPassword(hashedPassword);
+
+		// Return null if result has errors
+		if (res.hasErrors()) {
+			return null;
+		}
 		return userRepo.save(user);
-}
+	}
+	
+	
 
 public User login(@Valid UserLogin userLog, BindingResult res) {
    // Find user in the DB by email
@@ -63,10 +64,4 @@ public User login(@Valid UserLogin userLog, BindingResult res) {
 	return user;
 }
 
-
- 
-
- 
- 
- 
 }

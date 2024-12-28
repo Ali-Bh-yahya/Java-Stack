@@ -18,7 +18,7 @@ public class BookController {
 		this.bookService = bookService;
 	}
 	@RequestMapping(value="/book" , method=RequestMethod.GET)
-	public String viewBook(Model model,@PathVariable("id")Long id) {
+	public String viewBook(Model model ) {
 		List <Book> book = bookService.allBooks();
 
 		model.addAttribute("book",book);
