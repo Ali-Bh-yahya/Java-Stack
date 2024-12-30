@@ -24,18 +24,18 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "ofteams")
+@Table(name = "teams")
 public class Team {
 	 @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Team name is required.")
-    @Size(min = 3, max = 30, message = "Team name must be between 3 and 30 characters.")
+    @Size(min = 3, max = 20, message = "Team name must be between 3 and 20 characters.")
     private String name;
     
     @NotEmpty(message = "Game Day is required.")
-    @Size(min = 1, max = 30, message = "Game Day is required.")
+    @Size(min = 1, max = 20, message = "Game Day is required.")
     private String gameDay;
     
     @NotNull(message = "Cannot be null")
@@ -43,8 +43,8 @@ public class Team {
     @Max(value = 5, message = "Skill level must be 5 or less")
     private Integer skill;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private User creator;
     
     private ArrayList<String> players = new ArrayList<String>();

@@ -26,6 +26,17 @@ public class MainController {
 	
 	@Autowired
     private TeamService teamService;
+	
+	
+	 @GetMapping("/")
+	    public String index(Model model, HttpSession session) {
+	    	if (session.getAttribute("loggedUser") != null) {
+	            return "redirect:/home";
+	        }
+	        model.addAttribute("newUser", new User());
+	        model.addAttribute("newLogin", new LoginUser());
+	        return "landing_page.jsp";
+	    }
 
 	  @PostMapping("/login")
 	    public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult bindingResult,
@@ -63,15 +74,7 @@ public class MainController {
 	        return "redirect:/";
 	    }
 	  
-    @GetMapping("/")
-    public String index(Model model, HttpSession session) {
-    	if (session.getAttribute("loggedUser") != null) {
-            return "redirect:/home";
-        }
-        model.addAttribute("newUser", new User());
-        model.addAttribute("newLogin", new LoginUser());
-        return "landing_page.jsp";
-    }
+   
 
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {

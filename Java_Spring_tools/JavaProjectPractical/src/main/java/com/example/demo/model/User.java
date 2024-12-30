@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "usersofteams")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -32,10 +32,22 @@ public class User {
     @NotEmpty(message="Password confirmation is required..")
     private String confirm;
     
-    @OneToMany(mappedBy="creator", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
 	private List<Team> teams;
 
-    @Column(updatable = false)
+    public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 

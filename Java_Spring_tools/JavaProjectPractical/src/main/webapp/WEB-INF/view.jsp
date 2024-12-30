@@ -51,7 +51,7 @@
             </table>
             <c:if test="${empty team.players}">
                 <div class="alert alert-info">
-                    No players have joined this team yet.
+                    <Label>No player in this team </Label>
                 </div>
             </c:if>
         </div>
@@ -59,7 +59,7 @@
    
         <c:if test="${team.players.size() == 9}">
             <div class="alert alert-warning mt-3">
-                <strong>The team is full!</strong>
+                <label>The team is full!</label>
             </div>
         </c:if>
 
@@ -68,8 +68,8 @@
         <form method="post" action="/teams/${team.id}/addPlayer" class="mt-4 mb-3">
             <label for="name" class="form-label">Player Name</label>
             <div class="d-flex align-items-center">
-                <input type="text" name="name" id="name" class="form-control me-2" required <c:if test="${team.players.size() == 9}"> disabled </c:if> />
-                <button type="submit" class="btn btn-primary" <c:if test="${team.players.size() == 9}"> disabled </c:if>>Add</button>
+                <input type="text" name="name" id="name" class="form-control me-2" required/>
+                <button type="submit" class="btn btn-primary">Add player</button>
             </div>
         </form>
     </div>
